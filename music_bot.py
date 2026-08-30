@@ -1,4 +1,5 @@
 import os
+import asyncio
 from pyrogram import Client, filters
 
 API_ID = 38520576
@@ -13,12 +14,18 @@ app = Client(
 )
 
 @app.on_message(filters.command("start"))
-def start_command(client, message):
-    message.reply_text("Hello! Main aapka music bot hoon. Mera istemaal karne ke liye /play likhein.")
+async def start_command(client, message):
+    await message.reply_text("Hello! Main aapka music bot hoon. Mera istemaal karne ke liye /play likhein.")
 
 @app.on_message(filters.command("play"))
-def play_command(client, message):
-    message.reply_text("🎵 Ganana chal raha hai...")
+async def play_command(client, message):
+    await message.reply_text("🎵 Ganana chal raha hai...")
 
-print("Bot is starting successfully...")
-app.run()
+async def main():
+    await app.start()
+    print("Bot started successfully in async mode!")
+    await asyncio.Event().wait()
+
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop_policy().get_event_loop()
+    loop.run_until_complete(main())
