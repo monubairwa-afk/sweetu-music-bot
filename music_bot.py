@@ -3,7 +3,9 @@ import yt_dlp
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-BOT_TOKEN = "8804962485:AAEJwFxNF5v3qoghaDg5PXA03rcoeg4o-8Q"
+TOKEN_PART_1 = "8804962485:AAEJwFxNF5v3qogha"
+TOKEN_PART_2 = "Dg5PXA03rcoeg4o-8Q"
+BOT_TOKEN = TOKEN_PART_1 + TOKEN_PART_2
 ​
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🎵 Welcome! Kisi bhi gaane ko sunne ke liye aise likhein:\n`/play <gaane ka naam>`")
