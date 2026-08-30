@@ -1,31 +1,20 @@
 import os
-import asyncio
-from pyrogram import Client, filters
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-API_ID = 38520576
-API_HASH = "fcd1232557078626b7911a2f71a1b0fa"
 BOT_TOKEN = "8804962485:AAEsRjVnp0wOKPaGglkNB8SJiYugFJY0qmk"
 
-app = Client(
-    "music_bot",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN
-)
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Hello! Main aapka music bot hoon. /play likhein.")
 
-@app.on_message(filters.command("start"))
-async def start_command(client, message):
-    await message.reply_text("Hello! Main aapka music bot hoon. Mera istemaal karne ke liye /play likhein.")
-
-@app.on_message(filters.command("play"))
-async def play_command(client, message):
-    await message.reply_text("🎵 Ganana chal raha hai...")
-
-async def main():
-    await app.start()
-    print("Bot started successfully in async mode!")
-    await asyncio.Event().wait()
+async def play(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("🎵 Gaana chal raha hai...")
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop_policy().get_event_loop()
-    loop.run_until_complete(main())
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
+    
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("play", play))
+    
+    print("Bot is running successfully...")
+    app.run_polling()
