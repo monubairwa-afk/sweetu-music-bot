@@ -1,5 +1,4 @@
 import os
-import asyncio
 from pyrogram import Client, filters
 
 API_ID = int(os.getenv("API_ID", "123456"))
@@ -19,10 +18,7 @@ async def start_command(client, message):
 
 @app.on_message(filters.command("play"))
 async def play_command(client, message):
-    await message.reply_text("🎵 Ganana chal raha hai... (Voice chat support jald hi active hoga!)")
+    await message.reply_text("🎵 Ganana chal raha hai...")
 
-if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(app.start())
-    print("Bot is running successfully!")
-    asyncio.get_event_loop().run_forever()
+print("Bot started successfully!")
+app.run()
