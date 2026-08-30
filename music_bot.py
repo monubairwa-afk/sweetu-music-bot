@@ -1,9 +1,9 @@
 import os
+import asyncio
 from pyrogram import Client, filters
 
-# Render par set kiye gaye environment variables ya direct yahan daal sakte hain
-API_ID = int(os.getenv("API_ID", "123456"))  # Apna Telegram API ID yahan dalein
-API_HASH = os.getenv("API_HASH", "your_api_hash")  # Apna API Hash yahan dalein
+API_ID = int(os.getenv("API_ID", "123456"))
+API_HASH = os.getenv("API_HASH", "your_api_hash")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8804962485:AAEsRjVnp0wOKPaGglkNB8SJiYugFJY0qmk")
 
 app = Client(
@@ -21,5 +21,8 @@ async def start_command(client, message):
 async def play_command(client, message):
     await message.reply_text("🎵 Ganana chal raha hai... (Voice chat support jald hi active hoga!)")
 
-print("Bot is starting...")
-app.run()
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(app.start())
+    print("Bot is running successfully!")
+    asyncio.get_event_loop().run_forever()
