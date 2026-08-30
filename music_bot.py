@@ -2,7 +2,7 @@ import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-BOT_TOKEN = "8804962485:AAEsRjVnp0wOKPaGglkNB8SJiYugFJY0qmk"
+BOT_TOKEN = "8804962485:AAEJwFxNF5v3qoghaDg5PXA03rcoeg4o-8Q"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Hello! Main aapka music bot hoon. /play likhein.")
