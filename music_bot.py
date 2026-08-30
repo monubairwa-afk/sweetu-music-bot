@@ -1,15 +1,16 @@
 import os
+import asyncio
 from pyrogram import Client, filters
 
-API_ID = int(os.getenv("API_ID", "123456"))
-API_HASH = os.getenv("API_HASH", "your_api_hash")
+API_ID = int(os.getenv("API_ID", "38520576"
+API_HASH = os.getenv("API_HASH", "fcd1232557078626b7911a2f71a1b0fa"
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8804962485:AAEsRjVnp0wOKPaGglkNB8SJiYugFJY0qmk")
 
 app = Client(
     "music_bot",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN
+    api_id=38520576
+    api_hash=fcd1232557078626b7911a2f71a1b0fa
+    bot_token=8804962485:AAEsRjVnp0wOKPaGglkNB8SJiYugFJY0qmk
 )
 
 @app.on_message(filters.command("start"))
@@ -20,5 +21,10 @@ async def start_command(client, message):
 async def play_command(client, message):
     await message.reply_text("🎵 Ganana chal raha hai...")
 
-print("Bot started successfully!")
-app.run()
+async def main():
+    await app.start()
+    print("Bot started successfully!")
+    await asyncio.Event().wait()
+
+if __name__ == "__main__":
+    asyncio.run(main())
