@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: sweetu-music-bot
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python music_bot.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.11
